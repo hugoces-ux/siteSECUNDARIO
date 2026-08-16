@@ -829,19 +829,28 @@
   }
 
   @media (max-width: 640px){
+    section{ padding: 64px 0; }
     header.hero{ padding: 90px 0 70px; }
-    .service{ grid-template-columns: 1fr; gap: 16px; padding: 30px 0; }
+    .service{ grid-template-columns: 1fr; gap: 16px; padding: 34px 0; }
     .service.highlight{ margin: 0 -20px; padding: 26px 20px; }
     .wrap{ padding: 0 20px; }
-    .yt-grid{ grid-template-columns: 1fr; gap: 24px; }
-    .resource-grid{ grid-template-columns: 1fr; gap: 24px; }
-    .credentials-list li{ padding: 18px 0 18px 22px; }
-    .faq-item{ padding: 22px 0; }
-    .contact-row{ padding: 18px 0; }
-    .social-block{ margin-top: 56px; }
-    .newsletter-item{ padding: 16px 0; }
+    .yt-grid{ grid-template-columns: 1fr; gap: 28px; }
+    .resource-grid{ grid-template-columns: 1fr; gap: 28px; }
+    .resource-grid--pairs{ grid-template-columns: 1fr; }
+    .credentials-list li{ padding: 20px 0 20px 22px; }
+    .faq-item{ padding: 26px 0; }
+    .contact-row{ padding: 22px 0; }
+    .social-block{ margin-top: 64px; }
+    .newsletter-item{ padding: 18px 0; }
     h2.heading{ margin-bottom: 34px; }
     .eyebrow{ margin-bottom: 26px; }
+    .cta-row{ gap: 18px 26px; }
+    .redes-head-row{ gap: 44px; }
+    .redes-head-row .folder-widget{ margin-left: auto; margin-right: auto; }
+    .quicklinks-grid{ grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 44px; }
+    .quicklink-card{ padding: 24px 12px; }
+    .about-socials{ gap: 18px; }
+    .postit-board{ gap: 34px 22px; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -971,7 +980,7 @@
   }
 
   @media (max-width: 900px){
-    .site-nav-inner{ flex-wrap: wrap; row-gap: 10px; }
+    .site-nav-inner{ flex-wrap: wrap; row-gap: 14px; }
     .site-nav-brand{ order: 1; }
     .site-nav-partners{ order: 2; border-left: none; padding-left: 0; margin-left: 0; }
     .site-nav-links{
@@ -980,7 +989,7 @@
       flex-basis: 100%;
       flex-wrap: wrap;
       white-space: normal;
-      gap: 10px 16px;
+      gap: 14px 18px;
       font-size: 12.5px;
     }
     body{ padding-top: 92px; }
