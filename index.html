@@ -1148,6 +1148,94 @@
   html[data-theme="light"] .theme-toggle .icon-moon{ display: none; }
   html[data-theme="light"] .theme-toggle .icon-sun{ display: block; }
 
+  /* Menu flutuante de atalhos (fluido) */
+  .quick-menu{
+    position: fixed;
+    left: 22px;
+    bottom: 76px;
+    z-index: 81;
+  }
+  .quick-menu-toggle{
+    position: relative;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--brown-light);
+    color: var(--brown-deep);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: background-color 350ms ease, transform 0.2s ease;
+    z-index: 2;
+  }
+  .quick-menu-toggle:hover{ background: var(--stone); transform: translateY(-2px); }
+  .quick-menu-toggle:active{ transform: scale(0.94); }
+  .qm-line{
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform 300ms var(--ease-out), opacity 200ms ease;
+  }
+  .quick-menu.is-open .qm-line-1{ transform: translateY(5px) rotate(45deg); }
+  .quick-menu.is-open .qm-line-2{ opacity: 0; }
+  .quick-menu.is-open .qm-line-3{ transform: translateY(-5px) rotate(-45deg); }
+
+  .quick-menu-items{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .quick-menu-item{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    min-width: 150px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: var(--paper-deep);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+    opacity: 0;
+    transform: translateY(0) scale(0.85);
+    pointer-events: none;
+    transition: transform 320ms var(--ease-out), opacity 220ms ease, background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+  }
+  .quick-menu.is-open .quick-menu-item{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(var(--menu-y, 0)) scale(1);
+  }
+  .quick-menu.is-open .quick-menu-item:hover{
+    border-color: var(--brown-light);
+    transform: translateY(calc(var(--menu-y, 0) - 5px)) scale(1.06);
+    box-shadow: 0 14px 26px rgba(0,0,0,0.32);
+    z-index: 5;
+  }
+  .quick-menu-item[data-i="0"]{ transition-delay: 20ms; }
+  .quick-menu-item[data-i="1"]{ transition-delay: 55ms; }
+  .quick-menu-item[data-i="2"]{ transition-delay: 90ms; }
+  .quick-menu-item[data-i="3"]{ transition-delay: 125ms; }
+  .quick-menu-item[data-i="4"]{ transition-delay: 160ms; }
+  .quick-menu-item[data-i="5"]{ transition-delay: 195ms; }
+  @media (prefers-reduced-motion: reduce){
+    .quick-menu-toggle .qm-line, .quick-menu-item{ transition: opacity 150ms ease; }
+  }
+
   /* Scrollbar customizada */
   ::-webkit-scrollbar{ width: 10px; height: 10px; }
   ::-webkit-scrollbar-track{ background: var(--paper); }
@@ -1249,6 +1337,23 @@
   <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
   <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
 </button>
+<div class="quick-menu" id="quickMenu">
+  <button type="button" id="quickMenuToggle" class="quick-menu-toggle" aria-label="Abrir atalhos" aria-expanded="false">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line class="qm-line qm-line-1" x1="4" y1="7" x2="20" y2="7"></line>
+      <line class="qm-line qm-line-2" x1="4" y1="12" x2="20" y2="12"></line>
+      <line class="qm-line qm-line-3" x1="4" y1="17" x2="20" y2="17"></line>
+    </svg>
+  </button>
+  <div class="quick-menu-items" role="menu" aria-label="Atalhos rápidos">
+    <a class="quick-menu-item" data-i="5" style="--menu-y: -308px" href="https://forms.gle/FozsHnwTb6gfpxmg8" target="_blank" rel="noopener" role="menuitem">Psicoterapia</a>
+    <a class="quick-menu-item" data-i="4" style="--menu-y: -258px" href="https://behealth.com.br/?utm_source=instagram-org&utm_medium=ig-hugo&utm_content=bio&utm_campaign=site-formulario" target="_blank" rel="noopener" role="menuitem">BeHealth</a>
+    <a class="quick-menu-item" data-i="3" style="--menu-y: -208px" href="https://www.instagram.com/hugocesarpsi/" target="_blank" rel="noopener" role="menuitem">Instagram</a>
+    <a class="quick-menu-item" data-i="2" style="--menu-y: -158px" href="https://www.youtube.com/@hugocesarpsi" target="_blank" rel="noopener" role="menuitem">YouTube</a>
+    <a class="quick-menu-item" data-i="1" style="--menu-y: -108px" href="https://humantrack.io/" target="_blank" rel="noopener" role="menuitem">HumanTrack</a>
+    <a class="quick-menu-item" data-i="0" style="--menu-y: -58px" href="https://sintropia.me/" target="_blank" rel="noopener" role="menuitem">Sintropia</a>
+  </div>
+</div>
 <nav class="site-nav">
   <div class="wrap wrap--wide site-nav-inner">
     <a class="site-nav-brand" href="#">Hugo César</a>
@@ -1821,6 +1926,27 @@
       document.documentElement.setAttribute('data-theme', next);
       try { localStorage.setItem('theme', next); } catch (e) {}
       window.dispatchEvent(new CustomEvent('themechange'));
+    });
+  }
+
+  // Menu flutuante de atalhos
+  const quickMenu = document.getElementById('quickMenu');
+  const quickMenuToggle = document.getElementById('quickMenuToggle');
+  if (quickMenu && quickMenuToggle) {
+    function closeQuickMenu() {
+      quickMenu.classList.remove('is-open');
+      quickMenuToggle.setAttribute('aria-expanded', 'false');
+    }
+    quickMenuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = quickMenu.classList.toggle('is-open');
+      quickMenuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    document.addEventListener('click', (e) => {
+      if (!quickMenu.contains(e.target)) closeQuickMenu();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeQuickMenu();
     });
   }
 
