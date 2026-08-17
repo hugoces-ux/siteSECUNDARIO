@@ -633,6 +633,11 @@
     display: block;
     text-decoration: none;
     cursor: default;
+    --bc-ink: #F3EDE0;
+    --bc-ink-soft: #C9BBA0;
+    --bc-brown-light: #C9AE8C;
+    --bc-brown-deep: #2A1D13;
+    --bc-stone: #EDE4D3;
   }
   a.bento-card{ cursor: pointer; }
   .bento-card-img{
@@ -665,13 +670,13 @@
     font-size: 11px;
     letter-spacing: 0.08em;
     text-transform: lowercase;
-    color: var(--brown-light);
+    color: var(--bc-brown-light);
     margin-bottom: 8px;
   }
   .bento-title{
     font-family: 'Libre Caslon Text', serif;
     font-size: 22px;
-    color: var(--ink);
+    color: var(--bc-ink);
     margin: 0 0 8px;
   }
   .bento-1 .bento-title{ font-size: 26px; }
@@ -679,7 +684,7 @@
     font-family: 'Work Sans', sans-serif;
     font-size: 13.5px;
     line-height: 1.5;
-    color: var(--ink-soft);
+    color: var(--bc-ink-soft);
     margin: 0;
   }
   .bento-badge{
@@ -689,8 +694,8 @@
     font-size: 11px;
     letter-spacing: 0.05em;
     text-transform: lowercase;
-    color: var(--brown-deep);
-    background: var(--brown-light);
+    color: var(--bc-brown-deep);
+    background: var(--bc-brown-light);
     padding: 4px 10px;
     border-radius: 20px;
     width: fit-content;
@@ -704,6 +709,13 @@
     opacity: 0;
     transform: translateY(6px);
     transition: opacity 300ms ease, transform 300ms ease;
+  }
+  .bento-card .btn-primary.bento-cta{
+    background: var(--bc-brown-light);
+    color: var(--bc-brown-deep);
+  }
+  @media (hover: hover) and (pointer: fine){
+    .bento-card:hover .btn-primary.bento-cta:hover{ background: var(--bc-stone); }
   }
   @media (hover: hover) and (pointer: fine){
     .bento-card:hover .bento-card-img{ transform: scale(1.06); }
@@ -734,13 +746,13 @@
     margin-top: 12px;
     font-family: 'Work Sans', sans-serif;
     font-size: 12px;
-    color: var(--ink-soft);
+    color: var(--bc-ink-soft);
     opacity: 0;
     transform: translateY(6px);
     transition: opacity 300ms ease, transform 300ms ease;
   }
-  .bento-coupon strong{ color: var(--brown-light); letter-spacing: 0.04em; }
-  .bento-highlight .bento-eyebrow{ color: var(--brown-light); }
+  .bento-coupon strong{ color: var(--bc-brown-light); letter-spacing: 0.04em; }
+  .bento-highlight .bento-eyebrow{ color: var(--bc-brown-light); }
   @media (hover: hover) and (pointer: fine){
     .bento-card:hover .bento-coupon{ opacity: 1; transform: translateY(0); }
   }
